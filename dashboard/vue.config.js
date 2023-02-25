@@ -1,4 +1,4 @@
-const { name } = require("./package.json");
+const { name } = require("../package.json");
 const { defineConfig } = require("@vue/cli-service");
 
 module.exports = defineConfig({
@@ -6,7 +6,7 @@ module.exports = defineConfig({
   lintOnSave: false,
   publicPath: "/dashboard",
   devServer: {
-    port: process.env.Dashboard_APP_PORT,
+    port: process.env.VUE_APP_Dashboard_PORT,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
@@ -15,7 +15,7 @@ module.exports = defineConfig({
   configureWebpack: {
     output: {
       // 把子应用打包成 umd 库格式
-      library: `${name}-[name]`,
+      library: name,
       libraryTarget: "umd",
       // jsonpFunction: `webpackJsonp_${name}`,
       chunkLoadingGlobal: `webpackJsonp_${name}`,

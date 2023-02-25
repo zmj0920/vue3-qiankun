@@ -3,12 +3,12 @@ import store from './store'
 const microApps = [
   {
     name: 'crm', // 子应用 package.json 中 name
-    entry: process.env.CRM_APP_URL, // 子应用的 ip 地址
+    entry:  process.env.VUE_APP_CRM_URL, // 子应用的 ip 地址
     activeRule: '/crm' // 激活当前子应用时路径前自动拼接的路径
   },
   {
     name: 'dashboard', // 子应用 package.json 中 name
-    entry: process.env.DASHBOARD_APP_URL, // 子应用的 ip 地址
+    entry: process.env.VUE_APP_DASHBOARD_URL, // 子应用的 ip 地址
     activeRule: '/dashboard' // 激活当前子应用时路径前自动拼接的路径
   }
 ]

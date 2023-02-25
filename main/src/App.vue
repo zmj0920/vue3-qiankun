@@ -50,7 +50,7 @@ export default {
     return {
       isLoading: true,
       microApps,
-      current: "/sub-vue/",
+      current: "/crm",
     };
   },
   computed: {
