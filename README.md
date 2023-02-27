@@ -1,6 +1,6 @@
 # qiankun-example
 
-qiankun 实战 demo，父应用 vue，子应用使用 `react`, `vue` 和 `原生HTML`。
+qiankun 实战 demo，使用vue3+ts搭建项目。
 
 ## 开始
 
@@ -32,9 +32,9 @@ npm start
 npm run build
 ```
 
-```
 
 判断是否独立环境
+```
 isInQiankun () {
     return window.__POWERED_BY_QIANKUN__
 }
