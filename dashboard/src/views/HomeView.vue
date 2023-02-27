@@ -1,14 +1,5 @@
 <template>
-  <div class="home">
-    dashboard
-  </div>
+  <div class="home">home</div>
 </template>
 
-<script>
-
-export default {
-  name: "HomeView",
-  components: {
-  },
-};
-</script>
+<script lang="ts"></script>
