@@ -6,7 +6,6 @@ import store from "./store/index";
 import microApps from "./micro-app";
 import "nprogress/nprogress.css";
 import { registerMicroApps, start, setDefaultMountApp } from "qiankun";
-
 const instance: any = createApp(App).use(store).use(router).mount("#app");
 
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading

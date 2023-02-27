@@ -57,6 +57,8 @@
         </span>
       </ul>
       <div class="userinfo">主应用的state：{{ JSON.stringify(state) }}</div>
+      <input v-model="input" type="text" />
+      <button @click="send">sent</button>
     </div>
     <div id="subapp-viewport"></div>
   </div>
@@ -65,10 +67,35 @@
 <script lang="ts" setup>
 import microApps from "./micro-app";
 import store from "./store";
-import { computed } from "vue";
+import { computed, onUnmounted, ref } from "vue";
 
 // 读取公共信息
 const state = computed(() => store.getGlobalState());
+
+const socket = new WebSocket("ws://localhost:8080");
+
+const input = ref("test");
+
+socket.onopen = function () {
+  console.log("Connected");
+
+  socket.onmessage = function (data) {
+    console.log(data.data);
+  };
+
+  // onUnmounted(() => {
+  //   socket.close();
+  // });
+};
+
+const send = () => {
+  socket.send(
+    JSON.stringify({
+      event: "events",
+      data: input.value,
+    })
+  );
+};
 </script>
 <style lang="less">
 html,
