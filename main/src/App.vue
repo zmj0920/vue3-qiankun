@@ -45,14 +45,16 @@
     <div class="layout-header">
       <div class="logo">QIANKUN-EXAMPLE</div>
       <ul class="sub-apps">
-        <li
+        <span
+          class="nav"
           v-for="item in microApps"
-          :class="{ active: item.activeRule === current }"
-          :key="item.name"
-          @click="goto(item)"
+          :key="item.activeRule"
+          style="margin-right: 24px"
         >
-          {{ item.name }}
-        </li>
+          <router-link :to="item.activeRule">
+            {{ item.name }}
+          </router-link>
+        </span>
       </ul>
       <div class="userinfo">主应用的state：{{ JSON.stringify(state) }}</div>
     </div>
@@ -63,23 +65,10 @@
 <script lang="ts" setup>
 import microApps from "./micro-app";
 import store from "./store";
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
-const current = ref("/crm");
-
+// 读取公共信息
 const state = computed(() => store.getGlobalState());
-
-function goto(item: any) {
-  history.pushState(null, item.activeRule, item.activeRule);
-  bindCurrent();
-}
-
-function bindCurrent() {
-  const path = window.location.pathname;
-  if (microApps.findIndex((item) => item.activeRule === path) >= 0) {
-    current.value = path;
-  }
-}
 </script>
 <style lang="less">
 html,
@@ -155,5 +144,14 @@ body {
       top: 0;
     }
   }
+}
+
+.nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

@@ -1,7 +1,7 @@
 {
-  "name": "qiankun-example",
-  "version": "0.0.1",
-  "description": "qiankun demo",
+  "name": "vue3-qiankun",
+  "version": "1.0.0",
+  "description": "qiankun",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
@@ -20,13 +20,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@fengxianqi.github.com:fengxianqi/qiankun-example.git"
+    "url": "https://github.com/zmj0920/vue3-qiankun.git"
   },
   "keywords": [
     "qiankun",
     "qiankun-example",
     "demo"
   ],
-  "author": "fengxianqi",
+  "author": "zmj0920",
   "license": "MIT"
 }

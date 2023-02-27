@@ -1,13 +1,13 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import './registerServiceWorker';
-import router from './router';
-import store from './store/index';
-import microApps from './micro-app';
-import 'nprogress/nprogress.css';
-import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
+import { createApp } from "vue";
+import App from "./App.vue";
+import "./registerServiceWorker";
+import router from "./router";
+import store from "./store/index";
+import microApps from "./micro-app";
+import "nprogress/nprogress.css";
+import { registerMicroApps, start, setDefaultMountApp } from "qiankun";
 
-const instance: any = createApp(App).use(store).use(router).mount('#app');
+const instance: any = createApp(App).use(store).use(router).mount("#app");
 
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading
 function loader(loading: any) {
@@ -21,7 +21,7 @@ function loader(loading: any) {
 const apps = microApps.map((item) => {
   return {
     ...item,
-    loader
+    loader,
   };
 });
 
@@ -44,14 +44,14 @@ registerMicroApps(apps);
 // })
 
 // 设置默认进入的子应用
-setDefaultMountApp('/crm');
+setDefaultMountApp("/crm");
 const options = {
   // 是否预加载
   prefetch: true,
   // 是否开启沙箱样式隔离
   sandbox: true,
   // 是否为单实例场景，单实例指的是同一时间只会渲染一个微应用。默认为 true。
-  singular: true
+  singular: true,
 };
 
 start(options);
