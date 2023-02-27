@@ -61,29 +61,17 @@
 </template>
 
 <script lang="ts" setup>
-import NProgress from "nprogress";
 import microApps from "./micro-app";
 import store from "./store";
-import { computed, nextTick, onBeforeMount, onMounted, ref, watch } from "vue";
+import { computed, ref } from "vue";
 
 const current = ref("/crm");
 
-const isLoading = ref(true);
-
 const state = computed(() => store.getGlobalState());
 
-watch(isLoading, (val) => {
-  if (val) {
-    NProgress.start();
-  } else {
-    nextTick(() => {
-      NProgress.done();
-    });
-  }
-});
 function goto(item: any) {
   history.pushState(null, item.activeRule, item.activeRule);
-  // this.current = item.name
+  bindCurrent();
 }
 
 function bindCurrent() {
@@ -92,34 +80,6 @@ function bindCurrent() {
     current.value = path;
   }
 }
-
-function listenRouterChange() {
-  // const _wr = function (type: string) {
-  //   const orig = history[type];
-  //   return function () {
-  //     const rv = orig.apply(this, arguments);
-  //     const e = new Event(type);
-  //     e.arguments = arguments;
-  //     window.dispatchEvent(e);
-  //     return rv;
-  //   };
-  // };
-  // history.pushState = _wr('pushState');
-  window.addEventListener("pushState", bindCurrent);
-  window.addEventListener("popstate", bindCurrent);
-}
-
-listenRouterChange();
-
-onMounted(() => {
-  bindCurrent();
-  NProgress.start();
-});
-
-onBeforeMount(() => {
-  window.removeEventListener("pushState", bindCurrent);
-  window.removeEventListener("popstate", bindCurrent);
-});
 </script>
 <style lang="less">
 html,
