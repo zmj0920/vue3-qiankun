@@ -1,33 +1,75 @@
 import { createStore } from "vuex";
+interface ListItem {
+  name: string;
+  path: string;
+  title: string;
+}
+
 export default createStore({
   state: {
-    listData: 10,
-    num: 10,
-    arr: [1, 2, 3, 4, 5, 6],
+    collapse: false,
+    list: <ListItem[]>[],
   },
   getters: {
-    arrfilter(state) {
-      return state.arr.filter((todo) => todo >= 3);
+    show: (state) => {
+      return state.list.length > 0;
+    },
+    nameList: (state) => {
+      return state.list.map((item) => item.name);
     },
   },
   // mutation 必须同步执行  唯一可以修改state数据的场所
   mutations: {
-    updateData(state, value) {
-      state.listData = value;
+    collapse(state) {
+      state.collapse = !state.collapse;
     },
-    addNum(state) {
-      state.num = state.num + 10;
+    delTagsItem(state, index: number) {
+      state.list.splice(index, 1);
     },
-
-    // 我们可以使用 ES2015 风格的计算属性命名功能
-    // 来使用一个常量作为函数名
-    // [SOME_MUTATION](state) {
-    //   // 修改 state
-    // },
+    setTagsItem(state, data: ListItem) {
+      state.list.push(data);
+    },
+    clearTags(state) {
+      state.list = [];
+    },
+    closeTagsOther(state, data: ListItem[]) {
+      state.list = data;
+    },
+    closeCurrentTag(state, data: any) {
+      for (let i = 0, len = this.list.length; i < len; i++) {
+        const item = state.list[i];
+        if (item.path === data.$route.fullPath) {
+          if (i < len - 1) {
+            data.$router.push(state.list[i + 1].path);
+          } else if (i > 0) {
+            data.$router.push(state.list[i - 1].path);
+          } else {
+            data.$router.push("/");
+          }
+          state.list.splice(i, 1);
+          break;
+        }
+      }
+    },
   },
   actions: {
-    setData({ commit }, value) {
-      commit("updateData", value);
+    handleCollapse({ commit }) {
+      commit("collapse");
+    },
+    delTagsItem({ commit }, index: number) {
+      commit("delTagsItem", index);
+    },
+    setTagsItem({ commit }, data: ListItem) {
+      commit("setTagsItem", data);
+    },
+    clearTags({ commit }) {
+      commit("clearTags");
+    },
+    closeTagsOther({ commit }, data: ListItem[]) {
+      commit("closeTagsOther", data);
+    },
+    closeCurrentTag({ commit }, data: any) {
+      commit("closeCurrentTag", data);
     },
   },
   modules: {},
