@@ -137,10 +137,10 @@ body {
 
 .layout-wrapper {
   .layout-header {
-    height: 70px;
+    height: 50px;
     width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    line-height: 70px;
+    line-height: 50px;
     position: relative;
 
     .logo {
