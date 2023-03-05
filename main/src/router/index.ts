@@ -1,36 +1,30 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import NProgress from "nprogress";
+import { createRouter, createWebHistory } from "vue-router";
+// import type { RouteRecordRaw } from "vue-router";
+// import BasicLayout from "../layouts/BasicLayout.vue";
+// import BlankLayout from "../layouts/BlankLayout.vue";
+// import WelcomePage from "../views/Hello.vue";
 
-const routes: Array<RouteRecordRaw> = [
+const routes: any[] = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    name: "index",
+    meta: { title: "Home" },
+    // component: BasicLayout,
+    redirect: "/crm/welcome",
+    children: [
+      {
+        path: "crm/dashboard/workspace",
+        name: "welcome",
+        meta: { title: "子服务dashboard", icon: "SmileOutlined" },
+        component: null,
+      },
+    ],
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
-
-router.beforeEach((to, from, next) => {
-  NProgress.start();
-  next();
-});
-
-router.afterEach(() => {
-  NProgress.done();
 });
 
 export default router;

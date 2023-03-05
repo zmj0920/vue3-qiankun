@@ -4,9 +4,18 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store/index";
 import microApps from "./micro-app";
-import "nprogress/nprogress.css";
+import "@ant-design-vue/pro-layout/dist/style.css";
+import Antd from "ant-design-vue";
+import ProLayout, { PageContainer } from "@ant-design-vue/pro-layout";
+
 import { registerMicroApps, start, setDefaultMountApp } from "qiankun";
-const instance: any = createApp(App).use(store).use(router).mount("#app");
+const instance: any = createApp(App)
+  .use(store)
+  .use(router)
+  .use(Antd)
+  .use(ProLayout)
+  .use(PageContainer)
+  .mount("#app");
 
 // 定义loader方法，loading改变时，将变量赋值给App.vue的data中的isLoading
 function loader(loading: any) {

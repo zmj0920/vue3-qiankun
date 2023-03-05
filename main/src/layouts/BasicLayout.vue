@@ -9,16 +9,13 @@
     style="min-height: 100vh"
     iconfont-url="//at.alicdn.com/t/font_2804900_nzigh7z84gc.js"
   >
-    <template #headerContentRender>
-      <div>herder</div>
-    </template>
     <template #menuHeaderRender>
-      <div v-if="isInQiankun" style="margin-top: 20px"></div>
-      <a v-if="!isInQiankun">
-        <img src="../../assets/favicon.svg" />
+      <a>
+        <img src="/favicon.svg" />
         <h1>Pro Layout</h1>
       </a>
     </template>
+
     <!-- custom right-content -->
     <template #rightContentRender>
       <div style="margin-right: 12px">
@@ -38,7 +35,7 @@
         {{ route.breadcrumbName }}
       </router-link>
     </template>
-    <!-- <template #menuFooterRender>
+    <template #menuFooterRender>
       <a
         :style="{
           lineHeight: '48rpx',
@@ -62,31 +59,39 @@
         />
         <span v-if="!baseState.collapsed">Preview Pro</span>
       </a>
-    </template> -->
+    </template>
 
     <!-- content begin -->
     <router-view v-slot="{ Component }">
-      <WaterMark :content="watermarkContent">
-        <component :is="Component" />
-      </WaterMark>
+      <!-- <WaterMark :content="watermarkContent"> -->
+      <component :is="Component" />
+      <!-- </WaterMark> -->
     </router-view>
   </pro-layout>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref, watchEffect, onMounted, unref } from "vue";
+import { computed, reactive, ref, watchEffect, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import { message } from "ant-design-vue";
+import {
+  message,
+  Button,
+  Input,
+  Switch,
+  Select,
+  Avatar,
+  Space,
+  Badge,
+  Menu,
+} from "ant-design-vue";
 import {
   getMenuData,
   clearMenuItem,
-  WaterMark,
   type RouteContextProps,
 } from "@ant-design-vue/pro-layout";
 
 const i18n = (t: string) => t;
 
-const isInQiankun = computed(() => (window as any).__POWERED_BY_QIANKUN__);
 const watermarkContent = ref("Pro Layout");
 const loading = ref(false);
 const router = useRouter();
@@ -99,22 +104,16 @@ const baseState = reactive<Omit<RouteContextProps, "menuData">>({
   collapsed: false,
 });
 
-const state: any = reactive({
+const state = reactive({
   menuData,
   splitMenus: true,
   // title: 'ProLayout',
   // logo: 'https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg',
-  navTheme: "light",
-  layout: "side",
+  navTheme: "realDark",
+  layout: "top",
   fixSiderbar: true,
   fixedHeader: true,
 });
-
-if (unref(isInQiankun)) {
-  state.headerRender = false;
-  state.fixedHeader = false;
-}
-
 const breadcrumb = computed(() =>
   router.currentRoute.value.matched.concat().map((item) => {
     return {

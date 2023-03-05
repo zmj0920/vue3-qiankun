@@ -20,10 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { Button, Tag, Result } from 'ant-design-vue';
-import { PageContainer } from '@ant-design-vue/pro-layout';
+import { Button, Tag, Result } from "ant-design-vue";
+import { PageContainer } from "@ant-design-vue/pro-layout";
 
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 </script>
