@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref, watchEffect, onMounted } from "vue";
+import { computed, reactive, ref, watchEffect, onMounted, unref } from "vue";
 import { useRouter } from "vue-router";
 import {
   message,
@@ -122,7 +122,7 @@ const state: any = reactive({
   fixedHeader: true,
 });
 
-if (isInQiankun.value) {
+if (unref(isInQiankun)) {
   state.headerRender = false;
 }
 
@@ -158,8 +158,6 @@ const handlePageLoadingClick = () => {
 };
 
 onMounted(() => {
-  console.log(isInQiankun);
-
   setTimeout(() => {
     watermarkContent.value = "New Mark";
   }, 2000);
