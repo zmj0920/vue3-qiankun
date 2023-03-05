@@ -115,6 +115,71 @@ const routes: any[] = [
           },
         ],
       },
+      {
+        path: "/list",
+        name: "list",
+        meta: { title: "列表页", icon: "MobileOutlined" },
+        redirect: "/list/child2",
+        component: BlankLayout,
+        children: [
+          {
+            path: "child1",
+            name: "list-child1",
+            meta: { title: "一级列表页面" },
+            component: BlankLayout,
+            children: [
+              {
+                path: "child1",
+                name: "list-child1-child1",
+                meta: {
+                  title: "一一级列表页面",
+                  // attach `params` to `$route.params`
+                  params: {
+                    id: 1,
+                  },
+                },
+                component: () => import("../views/DynamicPage.vue"),
+              },
+              {
+                path: "child2",
+                name: "list-child1-child2",
+                meta: {
+                  title: "二一级列表页面",
+                  // attach `params` to `$route.params`
+                  params: {
+                    id: 2,
+                  },
+                },
+                component: () => import("../views/DynamicPage.vue"),
+              },
+              {
+                path: "child3",
+                name: "list-child1-child3",
+                meta: {
+                  title: "三一级列表页面",
+                  // attach `params` to `$route.params`
+                  params: {
+                    id: 3,
+                  },
+                },
+                component: () => import("../views/DynamicPage.vue"),
+              },
+            ],
+          },
+          {
+            path: "child2",
+            name: "list-child2",
+            meta: { title: "二级列表页面" },
+            component: () => import("../views/TestPage.vue"),
+          },
+          {
+            path: "child3",
+            name: "list-child3",
+            meta: { title: "三级列表页面" },
+            component: () => import("../views/TestPage.vue"),
+          },
+        ],
+      },
     ],
   },
 ];

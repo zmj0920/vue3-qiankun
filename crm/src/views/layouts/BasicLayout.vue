@@ -13,7 +13,10 @@
       <div>herder</div>
     </template>
     <template #menuHeaderRender>
-      <div v-if="isInQiankun" style="margin-top: 20px"></div>
+      <a v-if="isInQiankun" style="margin-top: 50px">
+        <img src="../../assets/favicon.svg" />
+        <h1>子服务项目</h1>
+      </a>
       <a v-if="!isInQiankun">
         <img src="../../assets/favicon.svg" />
         <h1>Pro Layout</h1>
