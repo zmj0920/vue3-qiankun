@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
-import BasicLayout from "../views/layouts/BasicLayout.vue";
-import BlankLayout from "../views/layouts/BlankLayout.vue";
-import NestedLayout from "../views/layouts/NestedLayout.vue";
+import BasicLayout from "../layouts/BasicLayout.vue";
+import BlankLayout from "../layouts/BlankLayout.vue";
+import NestedLayout from "../layouts/NestedLayout.vue";
 import WelcomePage from "../views/Hello.vue";
 
 const routes: any[] = [

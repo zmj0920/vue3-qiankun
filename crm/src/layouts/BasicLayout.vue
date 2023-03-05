@@ -14,11 +14,11 @@
     </template>
     <template #menuHeaderRender>
       <a v-if="isInQiankun" style="margin-top: 50px">
-        <img src="../../assets/favicon.svg" />
-        <h1>子服务项目</h1>
+        <img src="../assets/favicon.svg" />
+        <h1>子服务CRM</h1>
       </a>
       <a v-if="!isInQiankun">
-        <img src="../../assets/favicon.svg" />
+        <img src="../assets/favicon.svg" />
         <h1>Pro Layout</h1>
       </a>
     </template>

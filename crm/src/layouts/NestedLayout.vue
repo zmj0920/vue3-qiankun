@@ -15,7 +15,7 @@
   >
     <template #menuHeaderRender>
       <a>
-        <img src="/favicon.svg" />
+        <img src="../assets/favicon.svg" />
         <h1>Pro Layout</h1>
       </a>
     </template>

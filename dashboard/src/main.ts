@@ -5,9 +5,21 @@ import routes from "./router";
 import { commonStore } from "./common";
 import store from "./store";
 
+import "@ant-design-vue/pro-layout/dist/style.css";
+import Antd from "ant-design-vue";
+import ProLayout, { PageContainer } from "@ant-design-vue/pro-layout";
+
+import icons from "./icons";
+
 let app: any = null;
 async function render(props: any = {}) {
-  app = createApp(App).use(routes).use(store);
+  app = createApp(App)
+    .use(routes)
+    .use(store)
+    .use(Antd)
+    .use(ProLayout)
+    .use(PageContainer)
+    .use(icons);
   const { container } = props;
   app.mount(container ? container.querySelector("#app") : "#app");
 }
